@@ -6,7 +6,7 @@
 #    By: adebray <adebray@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/10/02 03:26:29 by adebray           #+#    #+#              #
-#    Updated: 2015/03/05 04:19:31 by adebray          ###   ########.fr        #
+#    Updated: 2015/03/06 08:03:13 by adebray          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ LIBESSENTIAL	=	$(LIBLIBFT) $(LIBPRINTF)
 
 # LIBNCURSES		=	-lncurses
 
-LIBPUSHSWAP		=	$(LIBESSENTIAL) -L$(SRCDIR)/push_swap -lpush_swap
+LIBPUSHSWAP		=	$(LIBESSENTIAL) # -L$(SRCDIR)/push_swap -lpush_swap
 
 .PHONY: all clean fclean re $(NAME) asm
 
@@ -56,19 +56,15 @@ _curse: $(HEADDIR)/curse.h
 
 clean:
 	@make -C $(SRCDIR)/libft clean
-	@ #make -C $(SRCDIR)/curse clean
 	@make -C $(SRCDIR)/ft_printf clean
-	@make -C $(SRCDIR)/corewar clean
-	@make -C $(SRCDIR)/asm clean
+	# @make -C $(SRCDIR)/push_swap clean
 	@rm -f $(OBJ)
 	@echo "\033[31m•\033[0m $(NAME) clean.\033[0m"
 
 fclean:
 	@make -C $(SRCDIR)/libft fclean
-	@ #make -C $(SRCDIR)/curse fclean
 	@make -C $(SRCDIR)/ft_printf fclean
-	@make -C $(SRCDIR)/corewar fclean
-	@make -C $(SRCDIR)/asm fclean
+	# @make -C $(SRCDIR)/push_swap fclean
 	@rm -f $(OBJ)
 	@rm -f $(LIBNAME)
 	@rm -f $(NAME)
