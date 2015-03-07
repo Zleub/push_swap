@@ -6,7 +6,7 @@
 #    By: adebray <adebray@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/10/02 03:26:29 by adebray           #+#    #+#              #
-#    Updated: 2015/03/06 08:03:13 by adebray          ###   ########.fr        #
+#    Updated: 2015/03/07 17:43:55 by adebray          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,13 +27,13 @@ LIBESSENTIAL	=	$(LIBLIBFT) $(LIBPRINTF)
 
 # LIBNCURSES		=	-lncurses
 
-LIBPUSHSWAP		=	$(LIBESSENTIAL) # -L$(SRCDIR)/push_swap -lpush_swap
+LIBPUSHSWAP		=	$(LIBESSENTIAL) -L$(SRCDIR)/push_swap -lpush_swap
 
 .PHONY: all clean fclean re $(NAME) asm
 
 all: $(NAME)
 
-makelib: _libft _printf
+makelib: _libft _printf _push_swap
 
 $(NAME): makelib $(OBJ)
 	@$(CC) $(CCFLAGS) $(HEADFLAG) $(LIBPUSHSWAP) -o $(NAME) $(OBJ) main.c
@@ -46,9 +46,8 @@ _libft: $(HEADDIR)/libft.h
 _printf: $(HEADDIR)/ft_printf.h
 	@make -C $(SRCDIR)/ft_printf
 
-_curse: $(HEADDIR)/curse.h
-	@make -C $(SRCDIR)/curse
-
+_push_swap: $(HEADDIR)/push_swap.h
+	@make -C $(SRCDIR)/push_swap
 
 %.o: %.c
 	@echo '.''\c'
@@ -57,14 +56,14 @@ _curse: $(HEADDIR)/curse.h
 clean:
 	@make -C $(SRCDIR)/libft clean
 	@make -C $(SRCDIR)/ft_printf clean
-	# @make -C $(SRCDIR)/push_swap clean
+	@make -C $(SRCDIR)/push_swap clean
 	@rm -f $(OBJ)
 	@echo "\033[31m•\033[0m $(NAME) clean.\033[0m"
 
 fclean:
 	@make -C $(SRCDIR)/libft fclean
 	@make -C $(SRCDIR)/ft_printf fclean
-	# @make -C $(SRCDIR)/push_swap fclean
+	@make -C $(SRCDIR)/push_swap fclean
 	@rm -f $(OBJ)
 	@rm -f $(LIBNAME)
 	@rm -f $(NAME)
