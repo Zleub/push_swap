@@ -6,7 +6,7 @@
 /*   By: adebray <adebray@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/05 04:17:50 by adebray           #+#    #+#             */
-/*   Updated: 2015/03/09 11:25:10 by adebray          ###   ########.fr       */
+/*   Updated: 2015/03/09 11:59:32 by adebray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int		is_sort(t_ps *list)
 }
 
 #include <time.h>
-#define INSTR_OP 8
+#define INSTR_OP 11
 
 typedef struct s_stack	t_stack;
 
@@ -147,7 +147,6 @@ t_stack		*new_stack(void (*p)(void))
 	new->next = NULL;
 	return (new);
 }
-
 
 typedef struct s_env	t_env;
 
@@ -252,6 +251,18 @@ void	rrr(void)
 	rrb();
 }
 
+void	ss(void)
+{
+	sa();
+	sb();
+}
+
+void	rr(void)
+{
+	ra();
+	rb();
+}
+
 void	do_something(void)
 {
 	// int nbr = rand() % INSTR_OP;
@@ -277,9 +288,7 @@ void	do_something(void)
 		t[nbr]();
 	}
 	// push_stack(new_stack(t[nbr]));
-	print_list1();
-	print_list2();
-	usleep(800 * 400);
+	// usleep(800 * 400);
 }
 
 int		main(int argc, char **argv)
@@ -312,6 +321,9 @@ int		main(int argc, char **argv)
 	t[5] = rb;
 	t[6] = rra;
 	t[7] = rrb;
+	t[8] = ss;
+	t[9] = rr;
+	t[10] = rrr;
 
 	srand(time(NULL));
 
