@@ -6,7 +6,7 @@
 /*   By: adebray <adebray@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/05 04:17:50 by adebray           #+#    #+#             */
-/*   Updated: 2015/03/09 11:59:32 by adebray          ###   ########.fr       */
+/*   Updated: 2015/03/10 00:30:54 by adebray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,23 @@ int		is_sort(t_ps *list)
 	return (1);
 }
 
+int		get_l2lem(void)
+{
+	int		i;
+	t_ps	*tmp;
+
+	if (!g_end)
+		return (0);
+	tmp = g_end;
+	i = 0;
+	while (tmp)
+	{
+		tmp = tmp->next;
+		i += 1;
+	}
+	return (i);
+}
+
 #include <time.h>
 #define INSTR_OP 11
 
@@ -90,6 +107,7 @@ struct					s_stack
 };
 
 t_stack					*g_stackhead = NULL;
+t_stack					*g_laststack = NULL;
 
 void	(*t[INSTR_OP])(void); ///!\ WARNING
 
@@ -116,6 +134,12 @@ void		print_stack(void)
 			ft_printf("rra");
 		else if (tmp->p == t[7])
 			ft_printf("rrb");
+		else if (tmp->p == t[8])
+			ft_printf("ss");
+		else if (tmp->p == t[9])
+			ft_printf("rr");
+		else if (tmp->p == t[10])
+			ft_printf("rrr");
 		tmp = tmp->next;
 		if (tmp)
 			ft_printf(" ");
@@ -124,6 +148,7 @@ void		print_stack(void)
 
 void		push_stack(t_stack *elem)
 {
+	g_laststack = elem;
 	if (!g_stackhead)
 		g_stackhead = elem;
 	else
@@ -147,18 +172,6 @@ t_stack		*new_stack(void (*p)(void))
 	new->next = NULL;
 	return (new);
 }
-
-typedef struct s_env	t_env;
-
-struct					s_env
-{
-	int					min;
-	int					max;
-	int					mid;
-	int					middle;
-};
-
-t_env		g_env;
 
 void		print_env(void)
 {
@@ -263,6 +276,35 @@ void	rr(void)
 	rb();
 }
 
+int		isLastMin(t_ps *list)
+{
+	t_ps	*tmp;
+	int		i;
+
+	tmp = list;
+	i = INT_MAX;
+	if (!tmp)
+		return (0);
+	while (tmp)
+	{
+		if (tmp->nbr < i)
+			i = tmp->nbr;
+		tmp = tmp->next;
+	}
+	if (list && list->nbr == i)
+		return (1);
+	else
+		return (0);
+}
+
+int		is_notAlone(t_ps *list)
+{
+	if (!list || !list->next)
+		return (0);
+	else
+		return (1);
+}
+
 void	do_something(void)
 {
 	// int nbr = rand() % INSTR_OP;
@@ -272,10 +314,20 @@ void	do_something(void)
 
 	// else if (isMinmissplaced())
 
+	// if (isLastMin(g_head) && is_notAlone(g_head))
+	// {
+	// 	ra();
+	// 	return ;
+	// }
+	// if (isLastMin(g_end) && is_notAlone(g_end))
+	// {
+	// 	rb();
+	// 	return ;
+	// }
 	if (!areMinMaxgood())
 	{
-		ft_printf("forced rrr\n");
 		rrr();
+		return ;
 	}
 	else
 	{
@@ -285,17 +337,75 @@ void	do_something(void)
 
 
 		int nbr = rand() % INSTR_OP;
+		if (!g_end)
+		{
+			while (nbr == 0 || nbr == 3 || nbr == 5 || nbr == 7)
+				nbr = rand() % INSTR_OP;
+		}
+		if (!g_head)
+		{
+			while (nbr == 1 || nbr == 2 || nbr == 4 || nbr == 6)
+				nbr = rand() % INSTR_OP;
+		}
 		t[nbr]();
+		// if (g_laststack && g_laststack->p == t[nbr])
+		// 	ft_printf("same movement twice\n");
+		push_stack(new_stack(t[nbr]));
 	}
-	// push_stack(new_stack(t[nbr]));
+	// print_list1();
+	// print_list2();
 	// usleep(800 * 400);
+}
+
+void	get_something(void)
+{
+	char	*lines;
+
+	lines = (char *)malloc(8);
+	while (get_next_line(0, &lines) > 0)
+	{
+		if (!ft_strcmp(lines, "sa"))
+			sa();
+		if (!ft_strcmp(lines, "sb"))
+			sb();
+		if (!ft_strcmp(lines, "pa"))
+			pa();
+		if (!ft_strcmp(lines, "pb"))
+			pb();
+		if (!ft_strcmp(lines, "ra"))
+			ra();
+		if (!ft_strcmp(lines, "rb"))
+			rb();
+		if (!ft_strcmp(lines, "rra"))
+			rra();
+		if (!ft_strcmp(lines, "rrb"))
+			rrb();
+		if (!ft_strcmp(lines, "ss"))
+			ss();
+		if (!ft_strcmp(lines, "rr"))
+			rr();
+		if (!ft_strcmp(lines, "rrr"))
+			rrr();
+		print_list1();
+		print_list2();
+	}
+	free(lines);
 }
 
 int		main(int argc, char **argv)
 {
 	int		i;
 
-	i = 1;
+	if (ft_strcmp(argv[1], "-v"))
+	{
+		g_env.verbose = 0;
+		i = 1;
+	}
+	else
+	{
+		g_env.verbose = 1;
+		i = 2;
+	}
 	g_head = NULL;
 	g_end = NULL;
 	while (i < argc)
@@ -334,6 +444,7 @@ int		main(int argc, char **argv)
 	while (!is_sort(g_head) || g_end)
 	{
 		do_something();
+		// get_something();
 		count += 1;
 	}
 	print_stack();

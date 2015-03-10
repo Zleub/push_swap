@@ -6,7 +6,7 @@
 /*   By: adebray <adebray@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/07 17:35:49 by adebray           #+#    #+#             */
-/*   Updated: 2015/03/09 09:22:07 by adebray          ###   ########.fr       */
+/*   Updated: 2015/03/09 23:51:32 by adebray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,18 @@ void					ra(void);
 void					rb(void);
 void					rra(void);
 void					rrb(void);
+
+typedef struct s_env	t_env;
+
+struct					s_env
+{
+	int					min;
+	int					max;
+	int					mid;
+	int					middle;
+	int					verbose;
+};
+
+t_env		g_env;
 
 #endif

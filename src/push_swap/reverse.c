@@ -6,7 +6,7 @@
 /*   By: adebray <adebray@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/07 17:38:52 by adebray           #+#    #+#             */
-/*   Updated: 2015/03/09 11:45:42 by adebray          ###   ########.fr       */
+/*   Updated: 2015/03/09 23:50:38 by adebray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,14 @@ static void		reverse_list(t_ps **list)
 
 void			rra(void)
 {
-	// ft_printf("ra\n");
+	if (g_env.verbose)
+		ft_printf("ra\n");
 	reverse_list(&g_head);
 }
 
 void			rrb(void)
 {
-	// ft_printf("rb\n");
+	if (g_env.verbose)
+		ft_printf("rb\n");
 	reverse_list(&g_end);
 }
