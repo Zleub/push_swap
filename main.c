@@ -6,7 +6,7 @@
 /*   By: adebray <adebray@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/05 04:17:50 by adebray           #+#    #+#             */
-/*   Updated: 2015/03/10 00:30:54 by adebray          ###   ########.fr       */
+/*   Updated: 2015/03/10 11:13:11 by adebray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -327,7 +327,6 @@ void	do_something(void)
 	if (!areMinMaxgood())
 	{
 		rrr();
-		return ;
 	}
 	else
 	{
@@ -352,9 +351,9 @@ void	do_something(void)
 		// 	ft_printf("same movement twice\n");
 		push_stack(new_stack(t[nbr]));
 	}
-	// print_list1();
-	// print_list2();
-	// usleep(800 * 400);
+	print_list1();
+	print_list2();
+	usleep(800 * 400);
 }
 
 void	get_something(void)
