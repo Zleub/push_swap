@@ -6,7 +6,7 @@
 /*   By: adebray <adebray@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/07 17:35:49 by adebray           #+#    #+#             */
-/*   Updated: 2015/03/09 23:51:32 by adebray          ###   ########.fr       */
+/*   Updated: 2015/03/11 22:12:09 by adebray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ void					ra(void);
 void					rb(void);
 void					rra(void);
 void					rrb(void);
+void					rrr(void);
+void					ss(void);
+void					rr(void);
 
 typedef struct s_env	t_env;
 

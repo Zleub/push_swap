@@ -6,7 +6,7 @@
 /*   By: adebray <adebray@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/05 04:17:50 by adebray           #+#    #+#             */
-/*   Updated: 2015/03/10 11:13:11 by adebray          ###   ########.fr       */
+/*   Updated: 2015/03/11 21:39:29 by adebray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,6 +218,10 @@ void	do_something_random(void)
 	push_stack(new_stack(t[nbr]));
 }
 
+// Assume that min and max are good when max is upper than min
+// min should be on bottom of list_2
+// max on bottom of list_1
+
 int		areMinMaxgood(void)
 {
 	int		min;
@@ -254,28 +258,6 @@ int		areMinMaxgood(void)
 	// 	return (0);
 }
 
-// Assume that min and max are good when max is upper than min
-// min should be on bottom of list_2
-// max on bottom of list_1
-
-void	rrr(void)
-{
-	rra();
-	rrb();
-}
-
-void	ss(void)
-{
-	sa();
-	sb();
-}
-
-void	rr(void)
-{
-	ra();
-	rb();
-}
-
 int		isLastMin(t_ps *list)
 {
 	t_ps	*tmp;
@@ -305,55 +287,46 @@ int		is_notAlone(t_ps *list)
 		return (1);
 }
 
+int		get_listsize(t_ps *list)
+{
+	int	i;
+
+	i = 0;
+	if (!list)
+		return (0);
+	else
+	{
+		while (list)
+		{
+			list = list->next;
+			i += 1;
+		}
+		return (i);
+	}
+}
+
 void	do_something(void)
 {
-	// int nbr = rand() % INSTR_OP;
-
-	// t[nbr]();
-	// if (isMaxmissplaced())
-
-	// else if (isMinmissplaced())
-
-	// if (isLastMin(g_head) && is_notAlone(g_head))
-	// {
-	// 	ra();
-	// 	return ;
-	// }
-	// if (isLastMin(g_end) && is_notAlone(g_end))
-	// {
-	// 	rb();
-	// 	return ;
-	// }
 	if (!areMinMaxgood())
 	{
 		rrr();
+		return ;
+	}
+	if (get_listsize(g_head) > get_listsize(g_end))
+	{
+		pb();
+		return ;
+	}
+	else if (get_listsize(g_head) < get_listsize(g_end))
+	{
+		pa();
+		return ;
 	}
 	else
 	{
-	// ft_printf("isMaxmissplaced: %d\n", isMaxmissplaced());
-
-	// ft_printf("isMinmissplaced: %d\n", isMinmissplaced());
-
-
-		int nbr = rand() % INSTR_OP;
-		if (!g_end)
-		{
-			while (nbr == 0 || nbr == 3 || nbr == 5 || nbr == 7)
-				nbr = rand() % INSTR_OP;
-		}
-		if (!g_head)
-		{
-			while (nbr == 1 || nbr == 2 || nbr == 4 || nbr == 6)
-				nbr = rand() % INSTR_OP;
-		}
-		t[nbr]();
-		// if (g_laststack && g_laststack->p == t[nbr])
-		// 	ft_printf("same movement twice\n");
-		push_stack(new_stack(t[nbr]));
+		ft_printf("else\n");
+		return ;
 	}
-	print_list1();
-	print_list2();
-	usleep(800 * 400);
 }
 
 void	get_something(void)
@@ -444,6 +417,9 @@ int		main(int argc, char **argv)
 	{
 		do_something();
 		// get_something();
+		print_list1();
+		print_list2();
+		usleep(800 * 400);
 		count += 1;
 	}
 	print_stack();
