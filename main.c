@@ -6,7 +6,7 @@
 /*   By: adebray <adebray@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/05 04:17:50 by adebray           #+#    #+#             */
-/*   Updated: 2015/03/11 21:39:29 by adebray          ###   ########.fr       */
+/*   Updated: 2015/03/31 23:55:15 by adebray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -368,7 +368,9 @@ int		main(int argc, char **argv)
 {
 	int		i;
 
-	if (ft_strcmp(argv[1], "-v"))
+	if (argc == 1)
+		return (0);
+	if (argv[1] && ft_strcmp(argv[1], "-v"))
 	{
 		g_env.verbose = 0;
 		i = 1;
@@ -415,8 +417,8 @@ int		main(int argc, char **argv)
 	int count = 0;
 	while (!is_sort(g_head) || g_end)
 	{
-		do_something();
-		// get_something();
+		// do_something();
+		get_something();
 		print_list1();
 		print_list2();
 		usleep(800 * 400);

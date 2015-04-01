@@ -1,0 +1,38 @@
+- 0 1 2 3 4
+-
+
+sa -> - 0 1 2 4 3
+      - 
+
+pa -> - 0 1 2 3
+      - 4
+
+ra -> - 4 0 1 2 3
+      -
+
+rra -> - 1 2 3 4 0
+       -
+
+sa sa -> 0 1 2 3 4	/ ! \	-> []
+
+
+
+
+-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+
+
+<---- Depth ----->
+
+[]
+[sa] // primal node > do not have a simpler form
+- [sa][sa]
+- - [sa][sa][sa] : [sa] // node > have a simpler form
+- - [sa][sa][pa]
+- [sa][pa]
+- [sa][ra]
+- [sa][rra]
+[pa]
+[ra]
+[rra]
+
