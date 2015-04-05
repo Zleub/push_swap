@@ -148,7 +148,7 @@ int	main(int argc, char *argv[])
 
 	// print_stack(stack);
 
-	t_tree *head = make_branch(2);
+	t_tree *head = make_branch(4);
 	(void)head;
 	// fill_branch(&head);
 
