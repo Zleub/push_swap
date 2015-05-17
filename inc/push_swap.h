@@ -6,7 +6,7 @@
 /*   By: adebray <adebray@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/07 17:35:49 by adebray           #+#    #+#             */
-/*   Updated: 2015/04/02 18:43:45 by adebray          ###   ########.fr       */
+/*   Updated: 2015/05/17 01:57:54 by adebray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,21 @@ void					rrr(void);
 void					ss(void);
 void					rr(void);
 
+int						is_sort(t_ps *list);
+int						is_reverse_sort(t_ps *list);
+int						get_listsize(t_ps *list);
+int						get_listmin(t_ps *list);
+int						get_listmax(t_ps *list);
+
+void					die(int val);
+void					create(int nbr);
+int						check(char *str);
+
+void					do_something(int nbr);
+
+int						get_max_int(char *str);
+int						get_min_int(char *str);
+
 typedef struct s_env	t_env;
 
 struct					s_env
@@ -52,6 +67,21 @@ struct					s_env
 	int					mid;
 	int					middle;
 	int					verbose;
+};
+
+enum					e_moves
+{
+	PA,
+	PB,
+	SA,
+	SB,
+	RA,
+	RB,
+	RRA,
+	RRB,
+	SS,
+	RR,
+	RRR
 };
 
 t_env		g_env;

@@ -6,7 +6,7 @@
 /*   By: adebray <adebray@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/07 17:38:00 by adebray           #+#    #+#             */
-/*   Updated: 2015/03/09 23:50:51 by adebray          ###   ########.fr       */
+/*   Updated: 2015/05/16 21:40:15 by adebray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,12 @@ static void		rotate_list(t_ps **list)
 
 void			ra(void)
 {
-	if (g_env.verbose)
-		ft_printf("ra\n");
+	ft_printf("ra");
 	rotate_list(&g_head);
 }
 
 void			rb(void)
 {
-	if (g_env.verbose)
-		ft_printf("rb\n");
+	ft_printf("rb");
 	rotate_list(&g_end);
 }

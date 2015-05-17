@@ -6,7 +6,7 @@
 /*   By: adebray <adebray@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/07 17:35:10 by adebray           #+#    #+#             */
-/*   Updated: 2015/03/09 23:51:02 by adebray          ###   ########.fr       */
+/*   Updated: 2015/05/16 21:40:19 by adebray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,12 @@ static void		swap_list(t_ps **list)
 
 void			sa(void)
 {
-	if (g_env.verbose)
-		ft_printf("sa\n");
+	ft_printf("sa");
 	swap_list(&g_head);
 }
 
 void			sb(void)
 {
-	if (g_env.verbose)
-		ft_printf("sb\n");
+	ft_printf("sb");
 	swap_list(&g_end);
 }

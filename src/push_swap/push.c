@@ -6,7 +6,7 @@
 /*   By: adebray <adebray@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/07 17:36:43 by adebray           #+#    #+#             */
-/*   Updated: 2015/03/10 11:11:04 by adebray          ###   ########.fr       */
+/*   Updated: 2015/05/16 21:51:59 by adebray          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,14 @@ static void		push_list(t_ps **dst, t_ps **src)
 	*dst = swp;
 }
 
-void			pb(void)
+void			pa(void)
 {
-	if (g_env.verbose)
-		ft_printf("pa\n");
+	ft_printf("pa");
 	push_list(&g_end, &g_head);
 }
 
-void			pa(void)
+void			pb(void)
 {
-	if (g_env.verbose)
-		ft_printf("pb\n");
+	ft_printf("pb");
 	push_list(&g_head, &g_end);
 }

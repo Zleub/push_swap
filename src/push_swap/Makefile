@@ -14,7 +14,7 @@ NAME		=	libpush_swap.a
 LIB			=	push_swap
 HEADDIR		=	 ../../inc
 
-SRC			=	print.c push.c reverse.c rotate.c swap.c double.c
+SRC			=	$(shell ls -1 | grep "\.c")
 
 OBJ			= $(subst .c,.o,$(SRC))
 
